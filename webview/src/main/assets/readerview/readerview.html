@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <meta http-equiv="Pragma" content="no-cache">
+
+    <link rel="stylesheet" href="readerview.css"/>
+
+    <script src="readability/JSDOMParser-0.3.0.js"></script>
+    <script src="readability/readability-0.3.0.js"></script>
+    <script src="readerview.js"></script>
+    <script>
+        function getParam(param){
+            return new URLSearchParams(window.location.search).get(param);
+        }
+        document.addEventListener('readystatechange', event => {
+            // When window loaded ( external resources are loaded too- `css`,`src`, etc...)
+            if (event.target.readyState === "complete") {
+                showReadability(getParam("ref"))
+            }
+        });
+    </script>
+</head>
+</html>

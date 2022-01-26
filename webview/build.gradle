@@ -1,0 +1,99 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+def version = "1.7.1"
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 19
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField "String", "FRODO_READABILITY", "\"$version\""
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        freeCompilerArgs += '-Xjvm-default=compatibility'
+    }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+}
+
+task CreateReadability {
+    doFirst {
+        def readabilityFile = project.file("src/main/assets/readability-$version")
+        def useMin = false
+        def readabilityJS = project.file("src/web/readability-1.7.1.min.js").text
+        def readabilityInjectJS = project.file(useMin ? "src/web/readability-inject.min.js" : "src/web/readability-inject.js").text
+
+        def readabilityInjectCSS = project.file("src/web/readability-inject.min.css").bytes
+        def readabilityInjectHTML = project.file("src/web/readability-inject.html").bytes
+
+        def readabilityWrapperCSS = project.file("src/web/readability-inject-wrapper.min.css").text
+
+        def readabilityWrapper = """<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'>
+            <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self';script-src 'self'; style-src 'self'">
+            <style id='article-content'>
+            $readabilityWrapperCSS
+            </style></head><body><div id='article' role='article'>"""
+
+        def injectJS = """$readabilityJS
+
+function initReadabilityPage(){
+    var styleElement = document.getElementById('readability-init-style');
+    if(!styleElement){
+        var css = "${Base64.encoder.encodeToString(readabilityInjectCSS)}";
+        document.getElementsByTagName('html').style="width: 100%;height:100%;";
+        document.getElementsByTagName('body').style="width: 100%;height:100%;";
+        var parent = document.getElementsByTagName('head').item(0);
+        styleElement = document.createElement('style');
+        styleElement.id = 'readability-init-style';
+        styleElement.innerHTML = window.atob(css);
+        parent.appendChild(styleElement);
+
+        var readerWrapper = "${Base64.encoder.encodeToString(readabilityInjectHTML)}";
+        document.body.innerHTML += window.atob(readerWrapper);
+
+        var readerIFrame = document.createElement("iframe");
+        readerIFrame.id = 'readability-iframe';
+        readerIFrame.frameborder = "0";
+        readerIFrame.style = "width: 100%;height:100%;"
+        var documentClone = document.cloneNode(true);
+        var article = new Readability(documentClone, function(el) { return el; }).parse();
+        if(article){
+            var wrapper = "${Base64.encoder.encodeToString(readabilityWrapper.bytes)}";
+            var readerHTML = window.atob(wrapper) + '<h1>'+article.title+'</h1>' + article.content + "</div></body></html>";
+            readerIFrame.srcdoc = readerHTML;
+            document.getElementById('-----reader-----').appendChild(readerIFrame);
+        }
+    }
+};
+
+$readabilityInjectJS"""
+        readabilityFile.write(injectJS)
+    }
+}

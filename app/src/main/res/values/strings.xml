@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">android-readability-webview</string>
+    <string name="readability">Readability</string>
+    <string name="loadURLs">Load URLS</string>
+</resources>
