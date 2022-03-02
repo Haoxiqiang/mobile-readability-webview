@@ -15,19 +15,19 @@ object ReadabilityJSInject {
         try {
             webView.loadUrl(
                 "javascript:(function() {" +
-                        "var scriptElement = document.getElementById('readability-script');" + // "alert(scriptElement);" +
-                        "if(!scriptElement) {" +
-                        //"var meta = document.createElement('meta');" +
-                        //"meta.httpEquiv = \"Content-Security-Policy\";" +
-                        //"meta.content = \"default-src 'none'; img-src 'self';script-src 'self'; style-src 'self'\";" +
-                        //"document.getElementsByTagName('head')[0].appendChild(meta);"+
-                        "var parent = document.body;" +
-                        "var script = document.createElement('script');" +
-                        "script.type = 'text/javascript';" +
-                        "script.id = 'readability-script';" + // Tell the browser to BASE64-decode the string into your script !!!
-                        "script.innerHTML = window.atob('" + readabilityJS(webView.context.applicationContext) + "');" +
-                        "parent.appendChild(script);}" +
-                        "})()"
+                    "var scriptElement = document.getElementById('readability-script');" + // "alert(scriptElement);" +
+                    "if(!scriptElement) {" +
+                    // "var meta = document.createElement('meta');" +
+                    // "meta.httpEquiv = \"Content-Security-Policy\";" +
+                    // "meta.content = \"default-src 'none'; img-src 'self';script-src 'self'; style-src 'self'\";" +
+                    // "document.getElementsByTagName('head')[0].appendChild(meta);"+
+                    "var parent = document.body;" +
+                    "var script = document.createElement('script');" +
+                    "script.type = 'text/javascript';" +
+                    "script.id = 'readability-script';" + // Tell the browser to BASE64-decode the string into your script !!!
+                    "script.innerHTML = window.atob('" + readabilityJS(webView.context.applicationContext) + "');" +
+                    "parent.appendChild(script);}" +
+                    "})()"
             )
         } catch (e: IOException) {
             e.printStackTrace()

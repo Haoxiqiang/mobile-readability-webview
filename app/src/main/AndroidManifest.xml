@@ -14,7 +14,7 @@
         android:theme="@style/Theme.WebView"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".MainActivity"
+            android:name=".GeckoViewActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -6,7 +6,11 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.webkit.*
+import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -23,13 +27,12 @@ class MainActivity : AppCompatActivity() {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
             progressBar.visibility = View.VISIBLE
-
         }
 
         override fun onPageFinished(view: WebView, url: String?) {
             super.onPageFinished(view, url)
             progressBar.visibility = View.INVISIBLE
-            //ReadabilityJSInject.injectReadability(view)
+            // ReadabilityJSInject.injectReadability(view)
         }
 
         override fun shouldInterceptRequest(view: WebView, url: String): WebResourceResponse? {
@@ -75,16 +78,15 @@ class MainActivity : AppCompatActivity() {
             super.onProgressChanged(view, newProgress)
             progressBar.progress = newProgress
             if (newProgress > 80) {
-                //ReadabilityJSInject.injectReadability(view)
+                // ReadabilityJSInject.injectReadability(view)
             }
         }
 
         override fun onReceivedTitle(view: WebView, title: String?) {
             super.onReceivedTitle(view, title)
-            //ReadabilityJSInject.injectReadability(view)
+            // ReadabilityJSInject.injectReadability(view)
         }
     }
-
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,10 +111,10 @@ class MainActivity : AppCompatActivity() {
 
         webView.loadUrl(
             "file:///android_asset/readerview/readerview.html?ref=${
-                URLEncoder.encode(
-                    "https://www.zhihu.com/question/47819047/answer/108130984",
-                    "UTF-8"
-                )
+            URLEncoder.encode(
+                "https://www.zhihu.com/question/47819047/answer/108130984",
+                "UTF-8"
+            )
             }"
         )
     }

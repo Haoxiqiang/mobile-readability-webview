@@ -28,7 +28,7 @@ subprojects {
             // Treat all Kotlin warnings as errors
             allWarningsAsErrors = false
             // Set JVM target to 8-11
-            jvmTarget = JavaVersion.VERSION_1_8
+            jvmTarget = JavaVersion.VERSION_11
         }
     }
 

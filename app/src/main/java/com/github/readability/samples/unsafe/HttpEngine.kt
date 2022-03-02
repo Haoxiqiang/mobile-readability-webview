@@ -4,16 +4,21 @@ import android.os.Build
 import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
 import androidx.annotation.RequiresApi
-import okhttp3.*
+import okhttp3.Call
+import okhttp3.Headers.Companion.toHeaders
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
-
 
 object HttpEngine {
 
     private val client: OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BASIC
-        })
+        .addInterceptor(
+            HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BASIC
+            }
+        )
         .addInterceptor(OkHttpWebResponse())
         .build()
 
@@ -33,18 +38,18 @@ object HttpEngine {
                     .build()
             )
             val response: Response = call.execute()
-            val responseBody = response.body() ?: return null
-            val headers = response.headers().toMultimap()
+            val responseBody = response.body ?: return null
+            val headers = response.headers.toMultimap()
                 .map { entry -> Pair(entry.key, entry.value.joinToString(separator = ";")) }
                 .toMap()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                val reasonPhrase = if (response.message().isNullOrEmpty()) {
-                    response.code().toString()
+                val reasonPhrase = if (response.message.isEmpty()) {
+                    response.code.toString()
                 } else {
-                    response.message()
+                    response.message
                 }
                 WebResourceResponse(
-                    "text/html", "utf-8", response.code(), reasonPhrase,
+                    "text/html", "utf-8", response.code, reasonPhrase,
                     headers,
                     responseBody.byteStream()
                 )
@@ -70,23 +75,23 @@ object HttpEngine {
                     Request.Builder()
                         .url(url)
                         .method(webRequest.method, null)
-                        .headers(Headers.of(webRequest.requestHeaders))
+                        .headers(webRequest.requestHeaders.toHeaders())
                         .header("User-Agent", userAgent)
                         .build()
                 )
                 val response: Response = call.execute()
-                val responseBody = response.body() ?: return null
-                val headers = response.headers().toMultimap()
+                val responseBody = response.body ?: return null
+                val headers = response.headers.toMultimap()
                     .map { entry -> Pair(entry.key, entry.value.joinToString(separator = ";")) }
                     .toMap()
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    val reasonPhrase = if (response.message().isNullOrEmpty()) {
-                        response.code().toString()
+                    val reasonPhrase = if (response.message.isEmpty()) {
+                        response.code.toString()
                     } else {
-                        response.message()
+                        response.message
                     }
                     WebResourceResponse(
-                        "text/html", "utf-8", response.code(), reasonPhrase,
+                        "text/html", "utf-8", response.code, reasonPhrase,
                         headers,
                         responseBody.byteStream()
                     )

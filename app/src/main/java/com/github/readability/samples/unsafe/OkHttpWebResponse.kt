@@ -6,6 +6,7 @@ import okhttp3.Interceptor
 import okhttp3.MediaType
 import okhttp3.Response
 import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 
@@ -13,16 +14,16 @@ class OkHttpWebResponse : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val originRequest = chain.request()
-        val url = originRequest.url().toString()
+        val url = originRequest.url.toString()
         val origin = chain.proceed(originRequest)
 
-        val responseBody = origin.body()
+        val responseBody = origin.body
         val responseString = responseBody?.string()
         val contentType: MediaType? = responseBody?.contentType()
 
         if (responseString.isNullOrEmpty()) {
             return origin.newBuilder()
-                .body(ResponseBody.create(contentType, ""))
+                .body("".toResponseBody(contentType))
                 .build()
         }
 
@@ -34,15 +35,15 @@ class OkHttpWebResponse : Interceptor {
 //            """.trimIndent()
 //            )
 
-            //doc.allElements.attr("crossorigin", "")
+            // doc.allElements.attr("crossorigin", "")
             val script = doc.createElement("script")
             script.id("readability-script")
             script.attr("type", "text/javascript")
             script.text(ReadabilityJSInject.decodeReadabilityJS(App.get()))
             script.appendTo(doc.body())
-            ResponseBody.create(contentType, doc.toString())
+            doc.toString().toResponseBody(contentType)
         } else {
-            ResponseBody.create(contentType, responseString)
+            responseString.toResponseBody(contentType)
         }
 
         return origin.newBuilder()
@@ -52,5 +53,4 @@ class OkHttpWebResponse : Interceptor {
 //            .header("X-XSS-Protection", "0")
             .build()
     }
-
 }

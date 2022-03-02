@@ -11,6 +11,5 @@ class ReadabilityJSInjectTest {
     @Test
     @Throws(Exception::class)
     fun testInjectReadability() {
-
     }
 }

@@ -11,9 +11,13 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url "https://maven.mozilla.org/maven2/"
+        }
     }
 }
 
 rootProject.name = "android-readability-webview"
 include ':app'
 include ':webview'
+include ':geckoview'
