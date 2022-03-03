@@ -15,7 +15,6 @@ import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.github.readability.samples.unsafe.HttpEngine
-import com.github.readability.webview.ReadabilityJSInject
 import java.net.URLEncoder
 
 class MainActivity : AppCompatActivity() {
@@ -101,12 +100,21 @@ class MainActivity : AppCompatActivity() {
         findViewById<View>(R.id.loadURLs).setOnClickListener {
             SampleURLs.show(this@MainActivity) { url ->
                 HttpEngine.prepareSet.add(url)
-                webView.loadUrl(url)
+                // webView.loadUrl(url)
+
+                webView.loadUrl(
+                    "file:///android_asset/readerview/readerview.html?ref=${
+                    URLEncoder.encode(
+                        url,
+                        "UTF-8"
+                    )
+                    }"
+                )
             }
         }
 
         findViewById<View>(R.id.readability).setOnClickListener {
-            ReadabilityJSInject.readabilityToggle(webView)
+            // ReadabilityJSInject.readabilityToggle(webView)
         }
 
         webView.loadUrl(

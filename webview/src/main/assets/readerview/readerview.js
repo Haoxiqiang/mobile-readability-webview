@@ -5,6 +5,37 @@
 // Class names to preserve in the readerized output. We preserve these class
 // names so that rules in readerview.css can match them. This list is taken from Fennec:
 // https://dxr.mozilla.org/mozilla-central/rev/7d47e7fa2489550ffa83aae67715c5497048923f/toolkit/components/reader/ReaderMode.jsm#21
+
+// Prevent false positives for these sites. This list is taken from Fennec:
+// https://dxr.mozilla.org/mozilla-central/rev/7d47e7fa2489550ffa83aae67715c5497048923f/toolkit/components/reader/Readerable.js#45
+let blockedHosts = Object.freeze([
+  "amazon.com",
+  "github.com",
+  "mail.google.com",
+  "pinterest.com",
+  "reddit.com",
+  "twitter.com",
+  "youtube.com"
+]);
+
+function isReaderable(doc) {
+    if (blockedHosts.some(blockedHost => location.hostname.endsWith(blockedHost))) {
+      console.log("isReaderable block host.");
+      return false;
+    }
+
+    if (location.pathname == "/") {
+      console.log("isReaderable pathname :" + location.pathname);
+      return false;
+    }
+
+    return isProbablyReaderable(doc, _isNodeVisible);
+}
+
+function _isNodeVisible(node) {
+    return node.clientHeight > 0 && node.clientWidth > 0;
+}
+
 const preservedClasses = [
   "caption",
   "emoji",
@@ -131,7 +162,7 @@ class ReaderView {
     const safeByline = this.escapeHTML(article.byline);
     const safeReadingTime = this.escapeHTML(article.readingTime);
     return `
-      <body class="mozac-readerview-body">
+      <body class="mozac-readerview-body heti">
         <div id="mozac-readerview-container" class="container" dir="${safeDir}">
           <div class="header">
             <a class="domain" href="${article.url.href}">${article.url.hostname}</a>
@@ -277,30 +308,24 @@ function fetchDocument(url) {
   });
 }
 
-//function getPreparedDocument(id, url) {
-//  return new Promise((resolve, reject) => {
-//
-//    browser.runtime.sendMessage({action: "getSerializedDoc", id: id}).then((serializedDoc) => {
-//        if (serializedDoc) {
-//          let doc = new JSDOMParser().parse(serializedDoc, url);
-//          resolve(doc);
-//        } else {
-//          reject();
-//        }
-//      }
-//    );
-//  });
-//}
-
 let readerView = new ReaderView();
-//connectNativePort();
 prepareBody();
 
 function showReadability(articleUrl){
     async function showAsync() {
       try {
         let doc = await fetchDocument(articleUrl);
+        let readability = isReaderable(doc);
+        console.log("readability:" + readability);
         readerView.show(doc, articleUrl);
+
+        let heti = new Heti('.heti');
+        heti.autoSpacing();
+//        if(readability){
+//            readerView.show(doc, articleUrl);
+//        } else{
+//            window.location.replace(articleUrl);
+//        }
       } catch(e) {
         console.log(e);
         // We weren't able to find the prepared document and also
@@ -311,59 +336,6 @@ function showReadability(articleUrl){
     }
     showAsync();
 }
-
-//function connectNativePort() {
-//  let url = new URL(window.location.href);
-//  let articleUrl = url.searchParams.get("url");
-//  let id = url.searchParams.get("id");
-//  let baseUrl = browser.runtime.getURL("/");
-//
-//  let port = browser.runtime.connectNative("mozacReaderviewActive");
-//  port.onMessage.addListener((message) => {
-//    switch (message.action) {
-//      case 'show':
-//        async function showAsync(options) {
-//          try {
-//            let doc;
-//            if (typeof Promise.any === "function") {
-//              doc = await Promise.any([fetchDocument(articleUrl), getPreparedDocument(id, articleUrl)]);
-//            } else {
-//              try {
-//                doc = await getPreparedDocument(id, articleUrl);
-//              } catch(e) {
-//                doc = await fetchDocument(articleUrl);
-//              }
-//            }
-//            readerView.show(doc, articleUrl, options);
-//          } catch(e) {
-//            console.log(e);
-//            // We weren't able to find the prepared document and also
-//            // failed to fetch it. Let's load the original page which
-//            // will make sure we show an appropriate error page.
-//            window.location.href = articleUrl;
-//          }
-//        }
-//        showAsync(message.value);
-//        break;
-//      case 'hide':
-//        window.location.href = articleUrl;
-//      case 'setColorScheme':
-//        readerView.setColorScheme(message.value.toLowerCase());
-//        break;
-//      case 'changeFontSize':
-//        readerView.changeFontSize(message.value);
-//        break;
-//      case 'setFontType':
-//        readerView.setFontType(message.value.toLowerCase());
-//        break;
-//      case 'checkReaderState':
-//        port.postMessage({baseUrl: baseUrl, activeUrl: articleUrl, readerable: true});
-//        break;
-//      default:
-//        console.error(`Received invalid action ${message.action}`);
-//    }
-//  });
-//}
 
 /**
  * Applies the configured color scheme to the HTML body while reader view is loading. This is to

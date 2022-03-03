@@ -10,10 +10,16 @@ let serializedDocs = new Map();
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   switch (message.action) {
      case 'show':
+       let port = browser.runtime.connectNative("mozacReaderview");
+       port.postMessage("receive show action.");
+
        let readerViewUrl = new URL(browser.runtime.getURL("/readerview.html"));
        readerViewUrl.searchParams.append("id", sender.contextId);
        readerViewUrl.searchParams.append("url", message.url);
        readerViewUrl.searchParams.append("colorScheme", message.options.colorScheme);
+
+       console.log("readerViewUrl:"+readerViewUrl);
+
        browser.tabs.update({url: readerViewUrl.href}).catch((e) => {
            console.error("Failed to open reader view", e, e.stack);
        });

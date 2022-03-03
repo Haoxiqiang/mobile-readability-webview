@@ -8,9 +8,12 @@
     <meta http-equiv="Pragma" content="no-cache">
 
     <link rel="stylesheet" href="readerview.css"/>
+    <link rel="stylesheet" href="heti.min.css"/>
 
     <script src="readability/JSDOMParser-0.3.0.js"></script>
     <script src="readability/readability-0.3.0.js"></script>
+    <script src="readability/readability-readerable-0.3.0.js"></script>
+    <script src="heti-addon.min.js"></script>
     <script src="readerview.js"></script>
     <script>
         function getParam(param){
@@ -19,7 +22,7 @@
         document.addEventListener('readystatechange', event => {
             // When window loaded ( external resources are loaded too- `css`,`src`, etc...)
             if (event.target.readyState === "complete") {
-                showReadability(getParam("ref"))
+                showReadability(getParam("ref"));
             }
         });
     </script>

@@ -19,7 +19,7 @@ object HttpEngine {
                 level = HttpLoggingInterceptor.Level.BASIC
             }
         )
-        .addInterceptor(OkHttpWebResponse())
+        // .addInterceptor(OkHttpWebResponse())
         .build()
 
     var userAgent: String = ""

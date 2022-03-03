@@ -45,6 +45,9 @@ function connectNativePort() {
   port.onMessage.addListener((message) => {
      switch (message.action) {
        case 'show':
+
+         port.postMessage("start show action.");
+
          browser.runtime.sendMessage({action: "show", options: message.value, url: location.href});
 
          let serializedDoc = new XMLSerializer().serializeToString(document);
