@@ -59,16 +59,7 @@ class ReaderView {
     return 9;
   }
 
-  /**
-   * Shows a reader view for the provided document. This method is used when activating
-   * reader view on the original page. In this case, we already have the DOM (passed
-   * through in the message from the background script) and can parse it directly.
-   *
-   * @param doc the document to make readerable.
-   * @param url the url of the article.
-   * @param options the fontSize, fontType and colorScheme to use.
-   */
-  show(doc, url, options = {fontSize: 4, fontType: "sans-serif", colorScheme: "light"}) {
+  show(doc, url, options = {fontSize: 4, fontType: "sans-serif", colorScheme: "dark"}) {
     let result = new Readability(doc, {classesToPreserve: preservedClasses}).parse();
     result.language = doc.documentElement.lang;
     document.title = result.title;
@@ -84,8 +75,8 @@ class ReaderView {
 
     document.body.outerHTML = this.createHtmlBody(article);
 
-    this.setFontSize(options.fontSize);
-    this.setFontType(options.fontType);
+//    this.setFontSize(options.fontSize);
+//    this.setFontType(options.fontType);
     this.setColorScheme(options.colorScheme);
   }
 
@@ -165,16 +156,12 @@ class ReaderView {
       <body class="mozac-readerview-body heti">
         <div id="mozac-readerview-container" class="container" dir="${safeDir}">
           <div class="header">
-            <a class="domain" href="${article.url.href}">${article.url.hostname}</a>
-            <div class="domain-border"></div>
             <h1>${safeTitle}</h1>
             <div class="credits">${safeByline}</div>
             <div>
               <div>${safeReadingTime}</div>
             </div>
           </div>
-          <hr>
-
           <div class="content">
             <div class="mozac-readerview-content">${article.content}</div>
           </div>
@@ -315,17 +302,9 @@ function showReadability(articleUrl){
     async function showAsync() {
       try {
         let doc = await fetchDocument(articleUrl);
-        let readability = isReaderable(doc);
-        console.log("readability:" + readability);
+        //let clean = DOMPurify.sanitize(doc.documentElement.innerHTML);
+        //doc.documentElement.innerHTML = clean
         readerView.show(doc, articleUrl);
-
-        let heti = new Heti('.heti');
-        heti.autoSpacing();
-//        if(readability){
-//            readerView.show(doc, articleUrl);
-//        } else{
-//            window.location.replace(articleUrl);
-//        }
       } catch(e) {
         console.log(e);
         // We weren't able to find the prepared document and also

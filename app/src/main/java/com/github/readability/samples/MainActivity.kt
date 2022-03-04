@@ -2,19 +2,14 @@ package com.github.readability.samples
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.webkit.WebChromeClient
-import android.webkit.WebResourceRequest
-import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.github.readability.samples.unsafe.HttpEngine
 import java.net.URLEncoder
 
 class MainActivity : AppCompatActivity() {
@@ -31,39 +26,17 @@ class MainActivity : AppCompatActivity() {
         override fun onPageFinished(view: WebView, url: String?) {
             super.onPageFinished(view, url)
             progressBar.visibility = View.INVISIBLE
-            // ReadabilityJSInject.injectReadability(view)
         }
 
-        override fun shouldInterceptRequest(view: WebView, url: String): WebResourceResponse? {
-            Log.d("WebView", url)
-            val resourceResponse = HttpEngine.handleRequestViaOkHttp(url)
-            if (resourceResponse != null) {
-                return resourceResponse
-            }
-            return super.shouldInterceptRequest(view, url)
-        }
-
-        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-        override fun shouldInterceptRequest(
-            view: WebView?,
-            request: WebResourceRequest?
-        ): WebResourceResponse? {
-            Log.d("WebView", request?.url?.toString() ?: "")
-            val resourceResponse = HttpEngine.handleRequestViaOkHttp(request)
-            if (resourceResponse != null) {
-                return resourceResponse
-            }
-            return super.shouldInterceptRequest(view, request)
-        }
-
+        @Suppress("DEPRECATION")
         override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-            if (processUrl(view, url)) {
+            if (processUrl(url)) {
                 return true
             }
             return super.shouldOverrideUrlLoading(view, url)
         }
 
-        fun processUrl(view: WebView?, url: String): Boolean {
+        fun processUrl(url: String): Boolean {
             // 拦截url点击
             if (!url.startsWith("http")) {
                 return true
@@ -76,14 +49,10 @@ class MainActivity : AppCompatActivity() {
         override fun onProgressChanged(view: WebView, newProgress: Int) {
             super.onProgressChanged(view, newProgress)
             progressBar.progress = newProgress
-            if (newProgress > 80) {
-                // ReadabilityJSInject.injectReadability(view)
-            }
         }
 
         override fun onReceivedTitle(view: WebView, title: String?) {
             super.onReceivedTitle(view, title)
-            // ReadabilityJSInject.injectReadability(view)
         }
     }
 
@@ -97,26 +66,6 @@ class MainActivity : AppCompatActivity() {
         webView.webChromeClient = webViewChromeClient
         webView.webViewClient = webViewClient
 
-        findViewById<View>(R.id.loadURLs).setOnClickListener {
-            SampleURLs.show(this@MainActivity) { url ->
-                HttpEngine.prepareSet.add(url)
-                // webView.loadUrl(url)
-
-                webView.loadUrl(
-                    "file:///android_asset/readerview/readerview.html?ref=${
-                    URLEncoder.encode(
-                        url,
-                        "UTF-8"
-                    )
-                    }"
-                )
-            }
-        }
-
-        findViewById<View>(R.id.readability).setOnClickListener {
-            // ReadabilityJSInject.readabilityToggle(webView)
-        }
-
         webView.loadUrl(
             "file:///android_asset/readerview/readerview.html?ref=${
             URLEncoder.encode(
@@ -125,6 +74,27 @@ class MainActivity : AppCompatActivity() {
             )
             }"
         )
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onMenuOpened(featureId: Int, menu: Menu): Boolean {
+        SampleURLs.show(this@MainActivity, urlPicker = { url ->
+            webView.loadUrl(
+                "file:///android_asset/readerview/readerview.html?ref=${
+                URLEncoder.encode(
+                    url,
+                    "UTF-8"
+                )
+                }"
+            )
+        }, dismiss = {
+            menu.close()
+        })
+        return true
     }
 
     override fun onResume() {

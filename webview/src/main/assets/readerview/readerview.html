@@ -7,14 +7,17 @@
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
     <meta http-equiv="Pragma" content="no-cache">
 
-    <link rel="stylesheet" href="readerview.css"/>
-    <link rel="stylesheet" href="heti.min.css"/>
+    <script src="readability-0.4.2/JSDOMParser.js"></script>
+    <script src="readability-0.4.2/Readability.js"></script>
+    <script src="readability-0.4.2/Readability-readerable.js"></script>
 
-    <script src="readability/JSDOMParser-0.3.0.js"></script>
-    <script src="readability/readability-0.3.0.js"></script>
-    <script src="readability/readability-readerable-0.3.0.js"></script>
-    <script src="heti-addon.min.js"></script>
+    <link rel="stylesheet" href="tools/heti.min.css"/>
+    <script src="tools/purify-2.3.6.js"></script>
+    <script src="tools/heti-addon.min.js"></script>
+
+    <link rel="stylesheet" href="readerview.css"/>
     <script src="readerview.js"></script>
+
     <script>
         function getParam(param){
             return new URLSearchParams(window.location.search).get(param);
@@ -25,6 +28,9 @@
                 showReadability(getParam("ref"));
             }
         });
+
+        const heti = new Heti('.heti');
+        heti.autoSpacing();
     </script>
 </head>
 </html>

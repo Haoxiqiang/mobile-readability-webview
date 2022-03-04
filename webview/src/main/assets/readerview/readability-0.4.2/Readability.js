@@ -121,11 +121,11 @@ Readability.prototype = {
   REGEXPS: {
     // NOTE: These two regular expressions are duplicated in
     // Readability-readerable.js. Please keep both copies in sync.
-    unlikelyCandidates: /-ad-|ai2html|banner|breadcrumbs|combx|comment|community|cover-wrap|disqus|extra|footer|gdpr|header|legends|menu|related|remark|replies|rss|shoutbox|sidebar|skyscraper|social|sponsor|supplemental|ad-break|agegate|pagination|pager|popup|yom-remote|top|swipe|bar|author|follow/i,
-    okMaybeItsACandidate: /(?<!title.*)(and|article|body|column|content|main|shadow)(?!.*title)/i,
+    unlikelyCandidates: /-ad-|ai2html|banner|breadcrumbs|combx|comment|community|cover-wrap|disqus|extra|footer|gdpr|header|legends|menu|related|remark|replies|rss|shoutbox|sidebar|skyscraper|social|sponsor|supplemental|ad-break|agegate|pagination|pager|popup|yom-remote/i,
+    okMaybeItsACandidate: /and|article|body|column|content|main|shadow/i,
 
     positive: /article|body|content|entry|hentry|h-entry|main|page|pagination|post|text|blog|story/i,
-    negative: /-ad-|hidden|^hid$| hid$| hid |^hid |banner|combx|comment|com-|contact|foot|footer|footnote|gdpr|masthead|media|meta|outbrain|promo|related|scroll|share|shoutbox|sidebar|skyscraper|sponsor|shopping|tags|tool|widget|top|swipe|bar|author|follow|logo/i,
+    negative: /-ad-|hidden|^hid$| hid$| hid |^hid |banner|combx|comment|com-|contact|foot|footer|footnote|gdpr|masthead|media|meta|outbrain|promo|related|scroll|share|shoutbox|sidebar|skyscraper|sponsor|shopping|tags|tool|widget/i,
     extraneous: /print|archive|comment|discuss|e[\-]?mail|share|reply|all|login|sign|single|utility/i,
     byline: /byline|author|dateline|writtenby|p-author/i,
     replaceFonts: /<(\/?)font[^>]*>/gi,
@@ -184,13 +184,13 @@ Readability.prototype = {
    * @return void
   **/
   _postProcessContent: function(articleContent) {
-    /* Readability cannot open relative uris so we convert them to absolute uris. */
+    // Readability cannot open relative uris so we convert them to absolute uris.
     this._fixRelativeUris(articleContent);
 
     this._simplifyNestedElements(articleContent);
 
     if (!this._keepClasses) {
-      /* Remove classes. */
+      // Remove classes.
       this._cleanClasses(articleContent);
     }
   },
@@ -896,6 +896,11 @@ Readability.prototype = {
       let shouldRemoveTitleHeader = true;
 
       while (node) {
+
+        if (node.tagName === "HTML") {
+          this._articleLang = node.getAttribute("lang");
+        }
+
         var matchString = node.className + " " + node.id;
 
         if (!this._isProbablyVisible(node)) {
@@ -2263,6 +2268,7 @@ Readability.prototype = {
       title: this._articleTitle,
       byline: metadata.byline || this._articleByline,
       dir: this._articleDir,
+      lang: this._articleLang,
       content: this._serializer(articleContent),
       textContent: textContent,
       length: textContent.length,

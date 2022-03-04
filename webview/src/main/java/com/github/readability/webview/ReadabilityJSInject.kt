@@ -53,7 +53,7 @@ object ReadabilityJSInject {
     private fun loadJSFromAssets(context: Context): String {
         var input: InputStream? = null
         return try {
-            input = context.assets.open("readability-${BuildConfig.FRODO_READABILITY}")
+            input = context.assets.open("readability")
             val buffer = ByteArray(input.available())
             input.read(buffer)
             input.close()

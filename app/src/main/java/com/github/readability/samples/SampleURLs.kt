@@ -12,11 +12,14 @@ object SampleURLs {
         "https://www.bilibili.com/video/BV1NL411N7KW",
     )
 
-    fun show(activity: Activity, urlPicker: (String) -> Unit) {
+    fun show(activity: Activity, urlPicker: (String) -> Unit, dismiss: () -> Unit) {
         AlertDialog.Builder(activity)
             .setItems(urls) { dialog, index ->
                 urlPicker.invoke(urls[index])
                 dialog.dismiss()
+            }
+            .setOnDismissListener {
+                dismiss.invoke()
             }
             .show()
     }

@@ -5,7 +5,7 @@
 package com.github.readability.webview
 
 import org.json.JSONObject
-import java.util.*
+import java.util.Locale
 
 object ReaderView {
     // Name of the port connected to all pages for checking whether or not
@@ -50,7 +50,6 @@ object ReaderView {
     fun createCheckReaderStateMessage(): JSONObject {
         return JSONObject().put(ACTION_MESSAGE_KEY, ACTION_CHECK_READER_STATE)
     }
-
 
     fun createShowReaderMessage(): JSONObject {
         val fontSize = FONT_SIZE_DEFAULT

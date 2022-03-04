@@ -3,10 +3,10 @@ package com.github.readability.samples
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
-import com.github.readability.samples.unsafe.HttpEngine
 import com.github.readability.webview.ReaderView
 import org.json.JSONException
 import org.json.JSONObject
@@ -92,20 +92,13 @@ class GeckoViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gecko_view)
 
-        findViewById<View>(R.id.loadURLs).setOnClickListener {
-            SampleURLs.show(this@GeckoViewActivity) { url ->
-                HttpEngine.prepareSet.add(url)
-                session.loadUri(url)
-            }
-        }
-
-        findViewById<View>(R.id.readability).setOnClickListener {
-            // ReadabilityJSInject.readabilityToggle(webView)
-            mPort?.postMessage(ReaderView.createCheckReaderStateMessage())
-            it.postDelayed({
-                mPort?.postMessage(ReaderView.createShowReaderMessage())
-            }, 2000)
-        }
+//        findViewById<View>(R.id.readability).setOnClickListener {
+//            // ReadabilityJSInject.readabilityToggle(webView)
+//            mPort?.postMessage(ReaderView.createCheckReaderStateMessage())
+//            it.postDelayed({
+//                mPort?.postMessage(ReaderView.createShowReaderMessage())
+//            }, 2000)
+//        }
 
         // session.loadUri("about:buildconfig")
         installExtensions()
@@ -205,6 +198,27 @@ class GeckoViewActivity : AppCompatActivity() {
                     e
                 )
             }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onMenuOpened(featureId: Int, menu: Menu): Boolean {
+        SampleURLs.show(this@GeckoViewActivity, urlPicker = { url ->
+//            webView.loadUrl(
+//                "file:///android_asset/readerview/readerview.html?ref=${
+//                    URLEncoder.encode(
+//                        url,
+//                        "UTF-8"
+//                    )
+//                }"
+//            )
+        }, dismiss = {
+            menu.close()
+        })
+        return true
     }
 
     override fun onResume() {

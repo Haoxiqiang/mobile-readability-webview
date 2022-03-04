@@ -192,7 +192,7 @@ font-face {
 
 .heti {
   max-width: 42em;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: 400;
   -webkit-font-smoothing: subpixel-antialiased;
   line-height: 1.5;
@@ -483,7 +483,7 @@ font-face {
   caption-side: bottom;
   margin-block-start: 2px;
   margin-block-end: -4px;
-  font-size: 14px;
+  font-size: 0.875em;
   line-height: 24px;
 }
 
@@ -531,7 +531,7 @@ font-face {
 .heti figcaption {
   display: inline-block;
   vertical-align: top;
-  font-size: 14px;
+  font-size: 0.875em;
   text-align: start;
 }
 

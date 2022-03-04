@@ -4,6 +4,7 @@
 
 .mozac-readerview-body {
   padding: 20px;
+  padding-top: 0px;
   transition-property: background-color, color;
   transition-duration: 0.4s;
   max-width: 35em;
@@ -12,18 +13,18 @@
 }
 
 .mozac-readerview-body.light {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   color: #222222;
 }
 
 .mozac-readerview-body.sepia {
-  color: #5b4636;
-  background-color: #f4ecd8;
+  color: #5B4636;
+  background-color: #F4ECD8;
 }
 
 .mozac-readerview-body.dark {
   background-color: #222222;
-  color: #eeeeee;
+  color: #EEEEEE;
 }
 
 .mozac-readerview-body.light * {
@@ -31,19 +32,11 @@
 }
 
 .mozac-readerview-body.sepia * {
-  color: #5b4636;
+  color: #5B4636;
 }
 
 .mozac-readerview-body.dark * {
   color: #eeeeee;
-}
-
-.mozac-readerview-body.sans-serif * {
-  font-family: sans-serif !important;
-}
-
-.mozac-readerview-body.serif * {
-  font-family: serif !important;
 }
 
 /* Override some controls and content styles based on color scheme */
@@ -71,7 +64,7 @@
 }
 
 .mozac-readerview-body.dark > .container > .header > .credits {
-  color: #aaaaaa;
+  color: #AAAAAA;
 }
 
 .mozac-readerview-body.sepia > .container > .header > .domain {
@@ -114,7 +107,6 @@
 
 .mozac-readerview-body > .container > .header {
   text-align: start;
-  padding-bottom: 10px;
 }
 
 .mozac-readerview-body > .container > .header > .credits {
@@ -122,9 +114,6 @@
 }
 
 .mozac-readerview-body > .container > .header > .domain {
-  margin-top: 10px;
-  padding-bottom: 10px;
-  color: #00acff !important;
   text-decoration: none;
 }
 
@@ -148,7 +137,6 @@
 .mozac-readerview-body > .container > .header > .credits {
   padding: 0px;
   margin: 0px;
-  margin-bottom: 32px;
 }
 
 .mozac-readerview-body > .container > .header > .meta-data {
@@ -176,7 +164,7 @@
 .mozac-readerview-content a:visited,
 .mozac-readerview-content a:hover,
 .mozac-readerview-content a:active {
-  color: #00acff !important;
+
 }
 
 .mozac-readerview-content h1 {
@@ -246,7 +234,6 @@
 .mozac-readerview-content .wp-caption-text,
 .mozac-readerview-content figcaption {
   font-size: 0.9em;
-  font-family: sans-serif;
   margin: 0px !important;
   padding-top: 4px !important;
 }
