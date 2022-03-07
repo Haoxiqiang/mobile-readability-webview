@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dark"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:contentDescription="@string/mozac_feature_readerview_dark_color_scheme_desc"
+                android:gravity="center"
+                android:text="@string/mozac_feature_readerview_dark"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/light"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:contentDescription="@string/mozac_feature_readerview_light_color_scheme_desc"
+                android:gravity="center"
+                android:text="@string/mozac_feature_readerview_light"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/sepia"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:contentDescription="@string/mozac_feature_readerview_sepia_color_scheme_desc"
+                android:gravity="center"
+                android:text="@string/mozac_feature_readerview_sephia"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/font_size_decrease"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/mozac_feature_readerview_font_size_decrease_desc"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/font_size"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/font_size_increase"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/mozac_feature_readerview_font_size_increase_desc"
+            android:gravity="center"
+            android:text="@string/mozac_feature_readerview_sephia"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

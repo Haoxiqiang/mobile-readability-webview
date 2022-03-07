@@ -59,7 +59,7 @@ class ReaderView {
     return 9;
   }
 
-  show(doc, url, options = {fontSize: 4, fontType: "sans-serif", colorScheme: "dark"}) {
+  show(doc, url, options = {fontSize: 4, fontType: "sans-serif", colorScheme: "light"}) {
     let result = new Readability(doc, {classesToPreserve: preservedClasses}).parse();
     result.language = doc.documentElement.lang;
     document.title = result.title;
@@ -75,8 +75,8 @@ class ReaderView {
 
     document.body.outerHTML = this.createHtmlBody(article);
 
-//    this.setFontSize(options.fontSize);
-//    this.setFontType(options.fontType);
+    this.setFontSize(options.fontSize);
+    this.setFontType(options.fontType);
     this.setColorScheme(options.colorScheme);
   }
 
@@ -104,6 +104,11 @@ class ReaderView {
     this.fontSize = fontSize;
   }
 
+  getFontSize() {
+    let readerView = document.getElementById("mozac-readerview-container");
+    return window.getComputedStyle(readerView).fontSize
+  }
+
   /**
    * Sets the font type.
    *
@@ -120,6 +125,10 @@ class ReaderView {
     bodyClasses.add(this.fontType);
   }
 
+  getFontType() {
+    let bodyClasses = document.body.classList;
+    return bodyClasses
+  }
   /**
    * Sets the color scheme.
    *
@@ -140,6 +149,11 @@ class ReaderView {
 
     this.colorScheme = colorScheme;
     bodyClasses.add(this.colorScheme);
+  }
+
+  getColorScheme() {
+    let bodyClasses = document.body.classList;
+    return bodyClasses
   }
 
   /**
@@ -293,38 +307,4 @@ function fetchDocument(url) {
     };
     xhr.send();
   });
-}
-
-let readerView = new ReaderView();
-prepareBody();
-
-function showReadability(articleUrl){
-    async function showAsync() {
-      try {
-        let doc = await fetchDocument(articleUrl);
-        //let clean = DOMPurify.sanitize(doc.documentElement.innerHTML);
-        //doc.documentElement.innerHTML = clean
-        readerView.show(doc, articleUrl);
-      } catch(e) {
-        console.log(e);
-        // We weren't able to find the prepared document and also
-        // failed to fetch it. Let's load the original page which
-        // will make sure we show an appropriate error page.
-        window.location.href = articleUrl;
-      }
-    }
-    showAsync();
-}
-
-/**
- * Applies the configured color scheme to the HTML body while reader view is loading. This is to
- * prevent "flashes" caused by having to change the color later.
- */
-function prepareBody() {
-  let url = new URL(window.location.href);
-  let colorScheme = url.searchParams.get("colorScheme");
-  let body = document.createElement("body");
-  body.classList.add("mozac-readerview-body");
-  body.classList.add(colorScheme);
-  document.body = body;
 }

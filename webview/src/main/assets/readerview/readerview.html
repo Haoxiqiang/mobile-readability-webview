@@ -11,26 +11,79 @@
     <script src="readability-0.4.2/Readability.js"></script>
     <script src="readability-0.4.2/Readability-readerable.js"></script>
 
-    <link rel="stylesheet" href="tools/heti.min.css"/>
-    <script src="tools/purify-2.3.6.js"></script>
-    <script src="tools/heti-addon.min.js"></script>
+    <link rel="stylesheet" href="heti/heti.min.css"/>
+    <script src="heti/heti-addon.min.js"></script>
 
-    <link rel="stylesheet" href="readerview.css"/>
+    <script src="tools/purify-2.3.6.js"></script>
+
+    <link rel="stylesheet" href="mozilla/readerview.css"/>
+
     <script src="readerview.js"></script>
 
     <script>
+
         function getParam(param){
             return new URLSearchParams(window.location.search).get(param);
         }
+
         document.addEventListener('readystatechange', event => {
-            // When window loaded ( external resources are loaded too- `css`,`src`, etc...)
             if (event.target.readyState === "complete") {
                 showReadability(getParam("ref"));
             }
         });
 
+        let readerView = new ReaderView();
+        prepareBody();
+
+        function showReadability(articleUrl){
+            async function showAsync() {
+              try {
+                let doc = await fetchDocument(articleUrl);
+                readerView.show(doc, articleUrl);
+
+                let colorScheme = readerView.getColorScheme()
+                let fontType = readerView.getFontType()
+                let fontSize = readerView.getFontSize()
+
+                window.readability.readerResult(JSON.stringify({colorScheme:colorScheme,fontType:fontType,fontSize:fontSize}));
+
+              } catch(e) {
+                console.log(e);
+                window.location.href = articleUrl;
+              }
+            }
+            showAsync();
+        }
+
+        function prepareBody() {
+          let url = new URL(window.location.href);
+          let colorScheme = url.searchParams.get("colorScheme");
+          let body = document.createElement("body");
+          body.classList.add("mozac-readerview-body");
+          body.classList.add(colorScheme);
+          document.body = body;
+        }
+
+        function updateTheme(json){
+            console.log(JSON.stringify(json))
+            // {"action":"setColorScheme","colorScheme":"light"}
+            const action = json.action
+            switch (action) {
+                  case 'setColorScheme':
+                    console.log(json.colorScheme);
+                    readerView.setColorScheme(json.colorScheme)
+                    break;
+                  default:
+                    console.log(`Sorry, we are out of ${JSON.stringify(json)}.`);
+            }
+        }
+
         const heti = new Heti('.heti');
         heti.autoSpacing();
+
+
+
+
     </script>
 </head>
 </html>

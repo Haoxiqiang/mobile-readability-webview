@@ -5,10 +5,10 @@ import android.graphics.Color
 import android.os.Build
 import android.webkit.WebSettings
 import android.webkit.WebView
-import com.github.readability.samples.unsafe.HttpEngine
 
 object WebInit {
 
+    @Suppress("DEPRECATION")
     @SuppressLint("SetJavaScriptEnabled", "ObsoleteSdkInt", "Deprecated")
     fun init(webView: WebView) {
 
@@ -61,7 +61,5 @@ object WebInit {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true)
         }
-
-        HttpEngine.userAgent = webSettings.userAgentString
     }
 }

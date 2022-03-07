@@ -2,6 +2,7 @@ package com.github.readability.samples
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
@@ -9,7 +10,11 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.webkit.WebSettingsCompat
+import com.github.readability.webview.ReaderJSInterface
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.net.URLEncoder
 
 class MainActivity : AppCompatActivity() {
@@ -63,8 +68,44 @@ class MainActivity : AppCompatActivity() {
 
         WebInit.init(webView)
 
+        findViewById<FloatingActionButton>(R.id.style).setOnClickListener {
+            StyleSheet()
+                .apply {
+                    styleTheme = { st ->
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && webView.settings.forceDark == WebSettingsCompat.FORCE_DARK_ON) {
+                            Toast.makeText(
+                                applicationContext,
+                                "webView.settings.forceDark, theme won't works.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            ReaderJSInterface.exeJavaScript(webView, st)
+                        }
+                    }
+                    styleFontSize = { sf ->
+                        ReaderJSInterface.exeJavaScript(webView, sf)
+                    }
+                }
+                .show(supportFragmentManager, "StyleSheet")
+        }
+
+        // if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+        //    when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+        //        Configuration.UI_MODE_NIGHT_YES -> WebSettingsCompat.setForceDark(
+        //            webView.settings,
+        //            WebSettingsCompat.FORCE_DARK_ON
+        //        )
+        //        Configuration.UI_MODE_NIGHT_NO, Configuration.UI_MODE_NIGHT_UNDEFINED -> WebSettingsCompat.setForceDark(
+        //            webView.settings,
+        //            WebSettingsCompat.FORCE_DARK_OFF
+        //        )
+        //    }
+        // }
+
         webView.webChromeClient = webViewChromeClient
         webView.webViewClient = webViewClient
+
+        webView.addJavascriptInterface(ReaderJSInterface, ReaderJSInterface.Bridge)
 
         webView.loadUrl(
             "file:///android_asset/readerview/readerview.html?ref=${
