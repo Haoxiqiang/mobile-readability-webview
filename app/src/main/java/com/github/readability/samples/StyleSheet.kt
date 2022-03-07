@@ -44,6 +44,19 @@ class StyleSheet : BottomSheetDialogFragment() {
         view.findViewById<View>(R.id.sepia).setOnClickListener {
             themeClick("sepia")
         }
+        view.findViewById<View>(R.id.font_size_decrease).setOnClickListener {
+            fontSizeClick(-1)
+        }
+        view.findViewById<View>(R.id.font_size_increase).setOnClickListener {
+            fontSizeClick(1)
+        }
+    }
+
+    private fun fontSizeClick(size: Int) {
+        val json = JSONObject()
+        json.put(ReaderJSInterface.ACTION_MESSAGE_KEY, ReaderJSInterface.ACTION_CHANGE_FONT_SIZE)
+        json.put(ReaderJSInterface.ACTION_VALUE_FONT_SIZE, size)
+        styleTheme?.invoke(json)
     }
 
     private fun themeClick(t: String) {

@@ -1,7 +1,3 @@
-/* This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this file,
- * You can obtain one at http://mozilla.org/MPL/2.0/. */
-
 .mozac-readerview-body {
   padding: 20px;
   padding-top: 0px;
@@ -10,95 +6,6 @@
   max-width: 35em;
   margin-left: auto;
   margin-right: auto;
-}
-
-.mozac-readerview-body.light {
-  background-color: #FFFFFF;
-  color: #222222;
-}
-
-.mozac-readerview-body.sepia {
-  color: #5B4636;
-  background-color: #F4ECD8;
-}
-
-.mozac-readerview-body.dark {
-  background-color: #222222;
-  color: #EEEEEE;
-}
-
-.mozac-readerview-body.light * {
-  color: #222222;
-}
-
-.mozac-readerview-body.sepia * {
-  color: #5B4636;
-}
-
-.mozac-readerview-body.dark * {
-  color: #eeeeee;
-}
-
-/* Override some controls and content styles based on color scheme */
-
-.mozac-readerview-body.light > .container > .header > .domain {
-  color: #ee7600;
-  border-bottom-color: #d0d0d0;
-}
-
-.mozac-readerview-body.light > .container > .header > h1 {
-  color: #222222;
-}
-
-.mozac-readerview-body.light > .container > .header > .credits {
-  color: #898989;
-}
-
-.mozac-readerview-body.dark > .container > .header > .domain {
-  color: #ff9400;
-  border-bottom-color: #777777;
-}
-
-.mozac-readerview-body.dark > .container > .header > h1 {
-  color: #eeeeee;
-}
-
-.mozac-readerview-body.dark > .container > .header > .credits {
-  color: #AAAAAA;
-}
-
-.mozac-readerview-body.sepia > .container > .header > .domain {
-  border-bottom-color: #5b4636 !important;
-}
-
-.mozac-readerview-body.sepia > .container > .footer {
-  background-color: #dedad4 !important;
-}
-
-.mozac-readerview-body.light > .container > .content .caption,
-.mozac-readerview-body.light > .container > .content .wp-caption-text,
-.mozac-readerview-body.light > .container > .content figcaption {
-  color: #898989;
-}
-
-.mozac-readerview-body.dark > .container > .content .caption,
-.mozac-readerview-body.dark > .container > .content .wp-caption-text,
-.mozac-readerview-body.dark > .container > .content figcaption {
-  color: #aaaaaa;
-}
-
-.mozac-readerview-body.light > .container > .content blockquote {
-  color: #898989 !important;
-  border-left-color: #d0d0d0 !important;
-}
-
-.mozac-readerview-body.sepia blockquote {
-  border-inline-start: 2px solid #5b4636 !important;
-}
-
-.mozac-readerview-body.dark > .container > .content blockquote {
-  color: #aaaaaa !important;
-  border-left-color: #777777 !important;
 }
 
 .mozac-readerview-body > .container > hr {
@@ -164,7 +71,6 @@
 .mozac-readerview-content a:visited,
 .mozac-readerview-content a:hover,
 .mozac-readerview-content a:active {
-
 }
 
 .mozac-readerview-content h1 {
@@ -289,6 +195,6 @@
   border-width: 0;
   /* height: auto is implied from `.mozac-readerview-content *` rule. */
   width: 1em;
-  margin: 0 .07em;
+  margin: 0 0.07em;
   padding: 0;
 }

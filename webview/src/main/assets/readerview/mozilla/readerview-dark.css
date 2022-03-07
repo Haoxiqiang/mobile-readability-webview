@@ -1,0 +1,32 @@
+.mozac-readerview-body.dark {
+  background-color: #222222;
+  color: #EEEEEE;
+}
+
+.mozac-readerview-body.dark * {
+  color: #EEEEEE;
+}
+
+.mozac-readerview-body.dark > .container > .header > .domain {
+  color: #FF9400;
+  border-bottom-color: #777777;
+}
+
+.mozac-readerview-body.dark > .container > .header > h1 {
+  color: #EEEEEE;
+}
+
+.mozac-readerview-body.dark > .container > .header > .credits {
+  color: #AAAAAA;
+}
+
+.mozac-readerview-body.dark > .container > .content .caption,
+.mozac-readerview-body.dark > .container > .content .wp-caption-text,
+.mozac-readerview-body.dark > .container > .content figcaption {
+  color: #AAAAAA;
+}
+
+.mozac-readerview-body.dark > .container > .content blockquote {
+  color: #AAAAAA !important;
+  border-left-color: #777777 !important;
+}
