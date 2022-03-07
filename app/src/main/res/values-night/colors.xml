@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="CB">#121212</color>
+    <color name="CM_1">#8A8A8A</color>
+
+    <color name="CT_1">#AFB9CF</color>
+
+    <color name="CH_1">#2E5999</color>
+    <color name="CH_2">#BF3A3B</color>
+    <color name="CH_3">#04AC6E</color>
+    <color name="CH_4">#BF7F15</color>
+</resources>

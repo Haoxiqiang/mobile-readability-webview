@@ -4,12 +4,13 @@ import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
-import android.view.Menu
+import android.text.TextUtils
 import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.webkit.WebSettingsCompat
@@ -19,6 +20,7 @@ import java.net.URLEncoder
 
 class MainActivity : AppCompatActivity() {
 
+    private val titleView by lazy { findViewById<TextView>(R.id.title) }
     private val webView by lazy { findViewById<WebView>(R.id.webView) }
     private val progressBar by lazy { findViewById<ProgressBar>(R.id.progressBar) }
 
@@ -58,6 +60,8 @@ class MainActivity : AppCompatActivity() {
 
         override fun onReceivedTitle(view: WebView, title: String?) {
             super.onReceivedTitle(view, title)
+            titleView.text = title
+            titleView.ellipsize = TextUtils.TruncateAt.MARQUEE
         }
     }
 
@@ -67,6 +71,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         WebInit.init(webView)
+
+        findViewById<View>(R.id.more).setOnClickListener {
+            SampleURLs.show(this@MainActivity, urlPicker = { url ->
+                webView.loadUrl(
+                    "file:///android_asset/readerview/readerview.html?ref=${
+                    URLEncoder.encode(
+                        url,
+                        "UTF-8"
+                    )
+                    }"
+                )
+            }, dismiss = {
+            })
+        }
 
         findViewById<FloatingActionButton>(R.id.style).setOnClickListener {
             StyleSheet()
@@ -115,27 +133,6 @@ class MainActivity : AppCompatActivity() {
             )
             }"
         )
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onMenuOpened(featureId: Int, menu: Menu): Boolean {
-        SampleURLs.show(this@MainActivity, urlPicker = { url ->
-            webView.loadUrl(
-                "file:///android_asset/readerview/readerview.html?ref=${
-                URLEncoder.encode(
-                    url,
-                    "UTF-8"
-                )
-                }"
-            )
-        }, dismiss = {
-            menu.close()
-        })
-        return true
     }
 
     override fun onResume() {

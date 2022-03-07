@@ -1,9 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme. -->
+
     <style name="Theme.WebView" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/CB</item>
         <item name="colorPrimaryDark">@color/CB</item>
         <item name="colorAccent">@color/CM_1</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>
