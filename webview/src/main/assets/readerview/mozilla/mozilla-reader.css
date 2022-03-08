@@ -1,0 +1,144 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  height: auto !important;
+}
+
+.mozilla-body {
+  padding: 20px;
+  padding-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  transition-property: background-color, color;
+  transition-duration: 0.4s;
+}
+.mozilla-body > .container > hr {
+  margin: 0px;
+}
+.mozilla-body > .container > .header {
+  text-align: start;
+}
+.mozilla-body > .container > .header > h1 {
+  font-size: 1.33em;
+  font-weight: 700;
+  line-height: 1.1em;
+  width: 100%;
+  margin: 0px;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  padding: 0px;
+}
+.mozilla-body > .container > .header > .credits {
+  font-size: 0.9em;
+  padding: 0px;
+  margin: 0px;
+}
+.mozilla-body > .container > .header > .domain {
+  text-decoration: none;
+}
+.mozilla-body > .container > .header > .domain-border {
+  margin-top: 15px;
+  border-bottom: 1.5px solid #777777;
+  width: 50%;
+}
+.mozilla-body > .container > .header > .meta-data {
+  font-size: 0.65em;
+  margin: 0 0 15px 0;
+}
+.mozilla-body > .container > .content {
+  padding-top: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.mozilla-body > .mozilla-content {
+  font-size: 1em;
+}
+.mozilla-body > .mozilla-content * {
+  max-width: 100% !important;
+  height: auto !important;
+}
+.mozilla-body > .mozilla-content a {
+  text-decoration: underline !important;
+  font-weight: normal;
+}
+.mozilla-body > .mozilla-content h1 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  font-weight: 700;
+  font-size: 1.6em;
+}
+.mozilla-body > .mozilla-content h2 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  font-weight: 700;
+  font-size: 1.2em;
+}
+.mozilla-body > .mozilla-content h3 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  font-weight: 700;
+  font-size: 1em;
+}
+.mozilla-body > .mozilla-content p {
+  font-size: 1em !important;
+  line-height: 1.4em !important;
+  margin: 0px !important;
+  margin-bottom: 20px !important;
+}
+.mozilla-body > .mozilla-content p > img:only-child, .mozilla-body > .mozilla-content p > a:only-child > img:only-child {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.mozilla-body > .mozilla-content code, .mozilla-body > .mozilla-content pre {
+  white-space: pre-wrap !important;
+  margin-bottom: 20px !important;
+}
+.mozilla-body > .mozilla-content blockquote {
+  margin: 0px !important;
+  margin-bottom: 20px !important;
+  padding: 0px !important;
+  padding-inline-start: 16px !important;
+  border: 0px !important;
+  border-left: 2px solid !important;
+}
+.mozilla-body > .mozilla-content figure, .mozilla-body > .mozilla-content .wp-caption {
+  display: block !important;
+  width: 100% !important;
+  margin: 0px !important;
+  margin-bottom: 32px !important;
+}
+.mozilla-body > .mozilla-content figure img, .mozilla-body > .mozilla-content .wp-caption img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.mozilla-body > .mozilla-content ul, .mozilla-body > .mozilla-content ol {
+  margin: 0px !important;
+  margin-bottom: 20px !important;
+  padding: 0px !important;
+  line-height: 1.5em;
+}
+.mozilla-body > .mozilla-content ul {
+  padding-inline-start: 30px !important;
+  list-style: disc !important;
+}
+.mozilla-body > .mozilla-content ol {
+  padding-inline-start: 35px !important;
+  list-style: decimal !important;
+}
+.mozilla-body > .mozilla-content img.wp-smiley, .mozilla-body > .mozilla-content img.emoji {
+  display: inline-block;
+  border-width: 0;
+  width: 1em;
+  margin: 0 0.07em;
+  padding: 0;
+}
+
+.mozilla-body.sans-serif * {
+  font-family: sans-serif !important;
+}
+
+.mozilla-body.serif * {
+  font-family: serif !important;
+}

@@ -2,30 +2,31 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-  <meta http-equiv="Pragma" content="no-cache">
-  <title></title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <meta http-equiv="Pragma" content="no-cache">
+    <title></title>
 
-  <script src="readability-0.4.2/JSDOMParser.js"></script>
-  <script src="readability-0.4.2/Readability.js"></script>
-  <script src="readability-0.4.2/Readability-readerable.js"></script>
+    <script src="readability-0.4.2/JSDOMParser.js"></script>
+    <script src="readability-0.4.2/Readability.js"></script>
+    <script src="readability-0.4.2/Readability-readerable.js"></script>
 
-  <link rel="stylesheet" href="heti/heti.min.css" />
-  <script src="heti/heti-addon.min.js"></script>
+    <link rel="stylesheet" href="heti/heti.min.css"/>
+    <script src="heti/heti-addon.min.js"></script>
 
-  <script src="tools/purify-2.3.6.js"></script>
+    <script src="tools/purify-2.3.6.js"></script>
 
-  <link rel="stylesheet" href="mozilla/readerview.css" />
-  <link rel="stylesheet" href="mozilla/readerview-dark.css" />
-  <link rel="stylesheet" href="mozilla/readerview-light.css" />
-  <link rel="stylesheet" href="mozilla/readerview-sepia.css" />
+    <link rel="stylesheet" href="mozilla/mozilla-reader.css"/>
+    <link rel="stylesheet" href="mozilla/mozilla-reader-dark.css"/>
+    <link rel="stylesheet" href="mozilla/mozilla-reader-light.css"/>
+    <link rel="stylesheet" href="mozilla/mozilla-reader-sepia.css"/>
 
-  <script src="readerview.js"></script>
+    <script src="readerview.js"></script>
 
-  <script>
+    <script>
     function getParam(param) {
       return new URLSearchParams(window.location.search).get(param);
     }
@@ -39,22 +40,24 @@
     let readerView = new ReaderView();
     prepareBody();
 
+    window.readability.update = function () {
+      let colorScheme = readerView.getColorScheme()
+      let fontType = readerView.getFontType()
+      let fontSize = readerView.getFontSize()
+
+      window.readability.readerResult(JSON.stringify({
+        colorScheme: colorScheme,
+        fontType: fontType,
+        fontSize: fontSize
+      }));
+    };
+
     function showReadability(articleUrl) {
       async function showAsync() {
         try {
           let doc = await fetchDocument(articleUrl);
           readerView.show(doc, articleUrl);
-
-          let colorScheme = readerView.getColorScheme()
-          let fontType = readerView.getFontType()
-          let fontSize = readerView.getFontSize()
-
-          window.readability.readerResult(JSON.stringify({
-            colorScheme: colorScheme,
-            fontType: fontType,
-            fontSize: fontSize
-          }));
-
+          window.readability.update();
         } catch (e) {
           console.log(e);
           window.location.href = articleUrl;
@@ -67,7 +70,7 @@
       let url = new URL(window.location.href);
       let colorScheme = url.searchParams.get("colorScheme");
       let body = document.createElement("body");
-      body.classList.add("mozac-readerview-body");
+      body.classList.add("mozilla-body");
       body.classList.add(colorScheme);
       document.body = body;
     }
@@ -90,14 +93,20 @@
           console.log(nextSize);
           readerView.setFontSize(nextSize)
           break;
+        case 'setFontType':
+          console.log(json.fontType);
+          readerView.setFontType(json.fontType)
+          break;
         default:
           console.log(`Sorry, we are out of ${JSON.stringify(json)}.`);
       }
+      window.readability.update();
     }
 
-    const heti = new Heti('.heti');
-    heti.autoSpacing();
-  </script>
+    // const heti = new Heti('.heti');
+    // heti.autoSpacing();
+
+    </script>
 </head>
 
 </html>

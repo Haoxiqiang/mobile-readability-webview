@@ -1,0 +1,16 @@
+.mozilla-body.sepia {
+  color: #5B4636;
+  background-color: #F4ECD8;
+}
+.mozilla-body.sepia * {
+  color: #5B4636;
+}
+.mozilla-body.sepia > .container > .header > .domain {
+  border-bottom-color: #5B4636 !important;
+}
+.mozilla-body.sepia > .container > .footer {
+  background-color: #DEDAD4 !important;
+}
+.mozilla-body.sepia blockquote {
+  border-inline-start: 2px solid #5B4636 !important;
+}

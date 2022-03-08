@@ -2,24 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingHorizontal="16dip">
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="8dip">
 
             <TextView
                 android:id="@+id/dark"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dip"
+                android:background="@drawable/bg_button"
                 android:contentDescription="@string/mozac_feature_readerview_dark_color_scheme_desc"
                 android:gravity="center"
+                android:paddingHorizontal="16dp"
                 android:text="@string/mozac_feature_readerview_dark"
                 android:textAlignment="center"
                 android:textColor="@color/CT_1"
@@ -27,10 +31,13 @@
 
             <TextView
                 android:id="@+id/light"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dip"
+                android:layout_marginHorizontal="16dip"
+                android:background="@drawable/bg_button"
                 android:contentDescription="@string/mozac_feature_readerview_light_color_scheme_desc"
                 android:gravity="center"
+                android:paddingHorizontal="16dp"
                 android:text="@string/mozac_feature_readerview_light"
                 android:textAlignment="center"
                 android:textColor="@color/CT_1"
@@ -38,11 +45,26 @@
 
             <TextView
                 android:id="@+id/sepia"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dip"
+                android:background="@drawable/bg_button"
                 android:contentDescription="@string/mozac_feature_readerview_sepia_color_scheme_desc"
                 android:gravity="center"
+                android:paddingHorizontal="16dp"
                 android:text="@string/mozac_feature_readerview_sephia"
+                android:textAlignment="center"
+                android:textColor="@color/CT_1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/heti"
+                android:layout_width="wrap_content"
+                android:layout_height="40dip"
+                android:layout_marginHorizontal="16dip"
+                android:background="@drawable/bg_button"
+                android:gravity="center"
+                android:paddingHorizontal="16dp"
+                android:text="@string/mozac_feature_readerview_heti"
                 android:textAlignment="center"
                 android:textColor="@color/CT_1"
                 android:textSize="16sp" />
@@ -51,15 +73,17 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="8dip">
 
         <TextView
             android:id="@+id/font_size_decrease"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:background="@drawable/bg_button"
             android:gravity="center"
+            android:paddingHorizontal="16dp"
             android:text="@string/mozac_feature_readerview_font_size_decrease_desc"
             android:textAlignment="center"
             android:textColor="@color/CT_1"
@@ -68,7 +92,8 @@
         <TextView
             android:id="@+id/font_size"
             android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_height="40dip"
+            android:layout_marginHorizontal="16dip"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/CT_1"
@@ -76,10 +101,45 @@
 
         <TextView
             android:id="@+id/font_size_increase"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:background="@drawable/bg_button"
             android:gravity="center"
+            android:paddingHorizontal="16dp"
             android:text="@string/mozac_feature_readerview_font_size_increase_desc"
+            android:textAlignment="center"
+            android:textColor="@color/CT_1"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingVertical="8dip">
+
+        <TextView
+            android:id="@+id/sans_serif"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:background="@drawable/bg_button"
+            android:gravity="center"
+            android:paddingHorizontal="32dp"
+            android:text="@string/mozac_feature_readerview_sans_serif_font_desc"
+            android:textAlignment="center"
+            android:textColor="@color/CT_1"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/serif"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:layout_marginHorizontal="16dip"
+            android:background="@drawable/bg_button"
+            android:gravity="center"
+            android:paddingHorizontal="32dp"
+            android:text="@string/mozac_feature_readerview_serif_font_desc"
             android:textAlignment="center"
             android:textColor="@color/CT_1"
             android:textSize="16sp" />

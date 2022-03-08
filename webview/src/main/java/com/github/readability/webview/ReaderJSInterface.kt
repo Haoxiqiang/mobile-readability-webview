@@ -21,6 +21,8 @@ object ReaderJSInterface {
     const val ACTION_SET_FONT_TYPE = "setFontType"
     const val ACTION_VALUE_FONT_TYPE = "fontType"
 
+    var theme: JSONObject = JSONObject()
+
     fun exeJavaScript(webView: WebView, action: JSONObject) {
         webView.loadUrl(
             "javascript:(function f() {" +
@@ -32,5 +34,6 @@ object ReaderJSInterface {
     @JavascriptInterface
     fun readerResult(data: String) {
         Log.d(TAG, "$data")
+        theme = JSONObject(data)
     }
 }

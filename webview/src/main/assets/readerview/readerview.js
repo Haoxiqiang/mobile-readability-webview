@@ -109,13 +109,13 @@ class ReaderView {
    */
   setFontSize(fontSize) {
     let size = 10 + 2 * fontSize + "px";
-    let readerView = document.getElementById("mozac-readerview-container");
+    let readerView = document.getElementById("mozilla-container");
     readerView.style.setProperty("font-size", size);
     this.fontSize = fontSize;
   }
 
   getFontSize() {
-    let readerView = document.getElementById("mozac-readerview-container");
+    let readerView = document.getElementById("mozilla-container");
     return window.getComputedStyle(readerView).fontSize.replace("px", "");
   }
 
@@ -189,8 +189,8 @@ class ReaderView {
     const safeByline = this.escapeHTML(article.byline);
     const safeReadingTime = this.escapeHTML(article.readingTime);
     return `
-      <body class="mozac-readerview-body heti">
-        <div id="mozac-readerview-container" class="container" dir="${safeDir}">
+      <body class="mozilla-body">
+        <div id="mozilla-container" class="container" dir="${safeDir}">
           <div class="header">
             <h1>${safeTitle}</h1>
             <div class="credits">${safeByline}</div>
@@ -199,7 +199,7 @@ class ReaderView {
             </div>
           </div>
           <div class="content">
-            <div class="mozac-readerview-content">${article.content}</div>
+            <div class="mozilla-content">${article.content}</div>
           </div>
         </div>
       </body>
