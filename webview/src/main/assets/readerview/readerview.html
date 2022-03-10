@@ -27,6 +27,7 @@
 
   <link rel="stylesheet" href="css/readerview.css" />
   <script src="js/readerview.js"></script>
+  <script src="js/html-compat.js"></script>
 
   <script>
     function getParam(param) {
@@ -61,6 +62,7 @@
           readerView.show(doc, articleUrl);
           window.hljs.highlightAll();
           window.readability.update();
+          window.applyCompat();
         } catch (e) {
           console.log(e);
           window.location.href = articleUrl;

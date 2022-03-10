@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.more).setOnClickListener {
             SampleURLs.show(this@MainActivity, urlPicker = { url ->
+                webView.clearHistory()
                 webView.loadUrl(
                     "file:///android_asset/readerview/readerview.html?ref=${
                     URLEncoder.encode(

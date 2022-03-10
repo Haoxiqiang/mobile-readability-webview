@@ -16,6 +16,7 @@ let blockedHosts = Object.freeze([
   "reddit.com",
   "twitter.com",
   "youtube.com",
+  "bilibili.com",
 ]);
 
 function isReaderable(doc) {
