@@ -151,7 +151,7 @@ class ReaderView {
    * or sepia.
    */
   setColorScheme(colorScheme) {
-    if (!["light", "sepia", "dark"].includes(colorScheme)) {
+    if (!["light", "sepia", "dark", "heti"].includes(colorScheme)) {
       console.error(`Invalid color scheme specified: ${colorScheme}`);
       return;
     }
@@ -174,6 +174,8 @@ class ReaderView {
       return "sepia";
     } else if (bodyClasses.contains("dark")) {
       return "dark";
+    } else if (bodyClasses.contains("heti")) {
+      return "heti";
     }
     return "";
   }

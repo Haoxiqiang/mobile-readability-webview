@@ -47,6 +47,9 @@ class StyleSheet : BottomSheetDialogFragment() {
         view.findViewById<View>(R.id.sepia).setOnClickListener {
             themeClick("sepia")
         }
+        view.findViewById<View>(R.id.heti).setOnClickListener {
+            themeClick("heti")
+        }
         view.findViewById<View>(R.id.font_size_decrease).setOnClickListener {
             fontSizeClick(-1)
         }

@@ -1,3 +1,6 @@
 [submodule "web/highlight.js"]
 	path = web/highlight.js
 	url = https://github.com/highlightjs/highlight.js
+[submodule "web/readability"]
+	path = web/readability
+	url = https://github.com/mozilla/readability
