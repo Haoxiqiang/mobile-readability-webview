@@ -1,4 +1,4 @@
-html, body {
+html, body, img {
   max-width: 100%;
   overflow-x: hidden;
   height: auto !important;
@@ -85,7 +85,7 @@ html, body {
   margin: 0px !important;
   margin-bottom: 20px !important;
 }
-.mozilla-body > .mozilla-content p > img:only-child, .mozilla-body > .mozilla-content p > a:only-child > img:only-child {
+.mozilla-body > .mozilla-content p img:only-child, .mozilla-body > .mozilla-content p a:only-child > img:only-child {
   display: block;
   margin-left: auto;
   margin-right: auto;

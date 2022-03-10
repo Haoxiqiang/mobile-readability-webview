@@ -6,4 +6,5 @@ sass mozilla-reader-light.sass ../webview/src/main/assets/readerview/mozilla/moz
 sass mozilla-reader-sepia.sass ../webview/src/main/assets/readerview/mozilla/mozilla-reader-sepia.css --no-source-map
 
 cp highlight.js/build/es/highlight.js ../webview/src/main/assets/readerview/js/highlight.js
+echo 'window.hljs = hljs;' >> ../webview/src/main/assets/readerview/js/highlight.js
 cp highlight.js/build/styles/default.min.css ../webview/src/main/assets/readerview/css/highlight.min.css
