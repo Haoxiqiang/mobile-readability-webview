@@ -4,3 +4,6 @@
 [submodule "web/readability"]
 	path = web/readability
 	url = https://github.com/mozilla/readability
+[submodule "web/heti"]
+	path = web/heti
+	url = https://github.com/sivan/heti
