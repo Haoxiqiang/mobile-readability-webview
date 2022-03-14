@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/CB"
-    tools:context=".MainActivity"
+    tools:context=".WebViewActivity"
     tools:ignore="RtlHardcoded">
 
     <TextView

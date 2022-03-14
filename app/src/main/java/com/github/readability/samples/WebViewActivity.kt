@@ -16,9 +16,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.webkit.WebSettingsCompat
 import com.github.readability.webview.ReaderJSInterface
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.net.URLEncoder
 
-class MainActivity : AppCompatActivity() {
+class WebViewActivity : AppCompatActivity() {
 
     private val titleView by lazy { findViewById<TextView>(R.id.title) }
     private val webView by lazy { findViewById<WebView>(R.id.webView) }
@@ -73,16 +72,9 @@ class MainActivity : AppCompatActivity() {
         WebInit.init(webView)
 
         findViewById<View>(R.id.more).setOnClickListener {
-            SampleURLs.show(this@MainActivity, urlPicker = { url ->
+            SampleURLs.show(this@WebViewActivity, urlPicker = { url ->
                 webView.clearHistory()
-                webView.loadUrl(
-                    "file:///android_asset/readerview/readerview.html?ref=${
-                    URLEncoder.encode(
-                        url,
-                        "UTF-8"
-                    )
-                    }"
-                )
+                ReaderJSInterface.renderReadabilityPage(webView, url)
             }, dismiss = {
             })
         }
@@ -126,13 +118,9 @@ class MainActivity : AppCompatActivity() {
 
         webView.addJavascriptInterface(ReaderJSInterface, ReaderJSInterface.Bridge)
 
-        webView.loadUrl(
-            "file:///android_asset/readerview/readerview.html?ref=${
-            URLEncoder.encode(
-                "https://www.zhihu.com/question/47819047/answer/108130984",
-                "UTF-8"
-            )
-            }"
+        ReaderJSInterface.renderReadabilityPage(
+            webView,
+            "https://www.zhihu.com/question/47819047/answer/108130984"
         )
     }
 

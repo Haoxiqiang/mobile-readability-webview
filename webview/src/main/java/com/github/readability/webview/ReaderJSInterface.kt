@@ -4,6 +4,7 @@ import android.util.Log
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import org.json.JSONObject
+import java.net.URLEncoder
 
 object ReaderJSInterface {
 
@@ -28,6 +29,17 @@ object ReaderJSInterface {
             "javascript:(function f() {" +
                 "updateTheme($action)" +
                 " } )()"
+        )
+    }
+
+    fun renderReadabilityPage(webView: WebView, url: String) {
+        webView.loadUrl(
+            "file:///android_asset/readerview/readerview.html?ref=${
+            URLEncoder.encode(
+                url,
+                "UTF-8"
+            )
+            }"
         )
     }
 
