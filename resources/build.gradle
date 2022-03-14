@@ -32,10 +32,14 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
         freeCompilerArgs += '-Xjvm-default=compatibility'
     }
+
+    sourceSets {
+        main {
+            assets.srcDirs = [rootProject.file("web/dist/")]
+        }
+    }
 }
 
 dependencies {
     testImplementation 'junit:junit:4.13.2'
-    api project(path: ':resources')
-
 }

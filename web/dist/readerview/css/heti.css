@@ -1,4 +1,9 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
+/*!
+ * Project: Heti
+ * URL: https://github.com/sivan/heti
+ * Author: Sivan [sun.sivan@gmail.com]
+ */
 @font-face {
   font-family: "Heti Hei";
   src: "Heti Hei SC", "Heti Hei TC", "Heti Hei JP", "Heti Hei KR";
@@ -192,7 +197,7 @@ font-face {
 
 .heti {
   max-width: 42em;
-  font-size: 1em;
+  font-size: 16px;
   font-weight: 400;
   -webkit-font-smoothing: subpixel-antialiased;
   line-height: 1.5;
@@ -483,7 +488,7 @@ font-face {
   caption-side: bottom;
   margin-block-start: 2px;
   margin-block-end: -4px;
-  font-size: 0.875em;
+  font-size: 14px;
   line-height: 24px;
 }
 
@@ -531,7 +536,7 @@ font-face {
 .heti figcaption {
   display: inline-block;
   vertical-align: top;
-  font-size: 0.875em;
+  font-size: 14px;
   text-align: start;
 }
 

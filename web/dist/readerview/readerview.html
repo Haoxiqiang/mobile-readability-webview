@@ -2,34 +2,34 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-  <meta http-equiv="Pragma" content="no-cache">
-  <title></title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <title></title>
 
-  <script src="readability-0.4.2/JSDOMParser.js"></script>
-  <script src="readability-0.4.2/Readability.js"></script>
-  <script src="readability-0.4.2/Readability-readerable.js"></script>
+    <script src="readability-0.4.2/JSDOMParser.js"></script>
+    <script src="readability-0.4.2/Readability.js"></script>
+    <script src="readability-0.4.2/Readability-readerable.js"></script>
 
-  <link rel="stylesheet" href="heti/heti.min.css" />
-  <script src="heti/heti-addon.min.js"></script>
+    <link rel="stylesheet" href="css/heti.css"/>
+    <link rel="stylesheet" href="css/mozilla-reader.css"/>
+    <link rel="stylesheet" href="css/mozilla-reader-dark.css"/>
+    <link rel="stylesheet" href="css/mozilla-reader-light.css"/>
+    <link rel="stylesheet" href="css/mozilla-reader-sepia.css"/>
+    <link rel="stylesheet" href="css/highlight.min.css"/>
 
-  <link rel="stylesheet" href="mozilla/mozilla-reader.css" />
-  <link rel="stylesheet" href="mozilla/mozilla-reader-dark.css" />
-  <link rel="stylesheet" href="mozilla/mozilla-reader-light.css" />
-  <link rel="stylesheet" href="mozilla/mozilla-reader-sepia.css" />
 
-  <link rel="stylesheet" href="css/highlight.min.css" />
-  <script type="module" src="js/highlight.js"></script>
+    <script src="js/heti-addon.js"></script>
+    <script type="module" src="js/highlight.js"></script>
+    <script src="js/html-compat.js"></script>
 
-  <link rel="stylesheet" href="css/readerview.css" />
-  <script src="js/readerview.js"></script>
-  <script src="js/html-compat.js"></script>
+    <link rel="stylesheet" href="readerview.css"/>
+    <script src="readerview.js"></script>
 
-  <script>
+
+    <script>
     function getParam(param) {
       return new URLSearchParams(window.location.search).get(param);
     }
@@ -110,7 +110,9 @@
 
     // const heti = new Heti('.heti');
     // heti.autoSpacing();
-  </script>
+
+
+    </script>
 </head>
 
 </html>
