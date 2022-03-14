@@ -1,5 +1,5 @@
-## Notice
+# android readability web content <!-- omit in toc -->
 
-### This is a very early testing project
-### This is a very early testing project
-### This is a very early testing project
+It's a project provides a function which likes some browser readability page.
+
+
