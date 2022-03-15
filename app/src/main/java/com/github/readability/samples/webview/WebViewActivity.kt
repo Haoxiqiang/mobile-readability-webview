@@ -1,4 +1,4 @@
-package com.github.readability.samples
+package com.github.readability.samples.webview
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
@@ -14,6 +14,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.webkit.WebSettingsCompat
+import com.github.readability.samples.R
+import com.github.readability.samples.SampleURLs
+import com.github.readability.samples.StyleSheet
 import com.github.readability.webview.ReaderJSInterface
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -67,7 +70,7 @@ class WebViewActivity : AppCompatActivity() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_web)
 
         WebInit.init(webView)
 

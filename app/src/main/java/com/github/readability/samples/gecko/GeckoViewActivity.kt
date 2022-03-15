@@ -1,4 +1,4 @@
-package com.github.readability.samples
+package com.github.readability.samples.gecko
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.view.Menu
 import android.view.View
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import com.github.readability.samples.R
+import com.github.readability.samples.SampleURLs
 import com.github.readability.webview.ReaderView
 import org.json.JSONException
 import org.json.JSONObject

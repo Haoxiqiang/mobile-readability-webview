@@ -1,4 +1,4 @@
-package com.github.readability.samples
+package com.github.readability.samples.webview
 
 import android.annotation.SuppressLint
 import android.graphics.Color
