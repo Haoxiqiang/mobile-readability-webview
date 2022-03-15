@@ -43,17 +43,20 @@
     let readerView = new ReaderView();
     prepareBody();
 
-    window.readability.update = function () {
-      let colorScheme = readerView.getColorScheme()
-      let fontType = readerView.getFontType()
-      let fontSize = readerView.getFontSize()
+    if(window.readability){
+        window.readability.update = function () {
+          let colorScheme = readerView.getColorScheme()
+          let fontType = readerView.getFontType()
+          let fontSize = readerView.getFontSize()
 
-      window.readability.readerResult(JSON.stringify({
-        colorScheme: colorScheme,
-        fontType: fontType,
-        fontSize: fontSize
-      }));
-    };
+          window.readability.readerResult(JSON.stringify({
+            colorScheme: colorScheme,
+            fontType: fontType,
+            fontSize: fontSize
+          }));
+        };
+    }
+
 
     function showReadability(articleUrl) {
       async function showAsync() {
@@ -61,7 +64,9 @@
           let doc = await fetchDocument(articleUrl);
           readerView.show(doc, articleUrl);
           window.hljs.highlightAll();
-          window.readability.update();
+          if(window.readability){
+            window.readability.update();
+          }
           window.applyCompat();
         } catch (e) {
           console.log(e);
@@ -110,6 +115,8 @@
 
     // const heti = new Heti('.heti');
     // heti.autoSpacing();
+
+
 
 
     </script>

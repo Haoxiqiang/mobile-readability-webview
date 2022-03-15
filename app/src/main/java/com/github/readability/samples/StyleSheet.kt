@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
-import com.github.readability.webview.ReaderJSInterface
+import com.github.webview.resources.ReaderJS
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.json.JSONObject
 
@@ -72,29 +72,29 @@ class StyleSheet : BottomSheetDialogFragment() {
     private fun updateFontSizeText() {
         view?.postDelayed({
             val fontSize = view?.findViewById<TextView>(R.id.font_size)
-            fontSize?.text = "${ReaderJSInterface.theme.optString("fontSize")}px"
+            fontSize?.text = "${ReaderJS.theme.optString("fontSize")}px"
         }, 300)
     }
 
     private fun themeClick(t: String) {
         val json = JSONObject()
-        json.put(ReaderJSInterface.ACTION_MESSAGE_KEY, ReaderJSInterface.ACTION_SET_COLOR_SCHEME)
-        json.put(ReaderJSInterface.ACTION_VALUE_COLOR_SCHEME, t)
+        json.put(ReaderJS.ACTION_MESSAGE_KEY, ReaderJS.ACTION_SET_COLOR_SCHEME)
+        json.put(ReaderJS.ACTION_VALUE_COLOR_SCHEME, t)
         styleTheme?.invoke(json)
     }
 
     private fun fontSizeClick(size: Int) {
         val json = JSONObject()
-        json.put(ReaderJSInterface.ACTION_MESSAGE_KEY, ReaderJSInterface.ACTION_CHANGE_FONT_SIZE)
-        json.put(ReaderJSInterface.ACTION_VALUE_FONT_SIZE, size)
+        json.put(ReaderJS.ACTION_MESSAGE_KEY, ReaderJS.ACTION_CHANGE_FONT_SIZE)
+        json.put(ReaderJS.ACTION_VALUE_FONT_SIZE, size)
         styleTheme?.invoke(json)
         updateFontSizeText()
     }
 
     private fun fontTypeClick(type: String) {
         val json = JSONObject()
-        json.put(ReaderJSInterface.ACTION_MESSAGE_KEY, ReaderJSInterface.ACTION_SET_FONT_TYPE)
-        json.put(ReaderJSInterface.ACTION_VALUE_FONT_TYPE, type)
+        json.put(ReaderJS.ACTION_MESSAGE_KEY, ReaderJS.ACTION_SET_FONT_TYPE)
+        json.put(ReaderJS.ACTION_VALUE_FONT_TYPE, type)
         styleTheme?.invoke(json)
     }
 }

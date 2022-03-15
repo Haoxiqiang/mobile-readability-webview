@@ -18,6 +18,7 @@ import com.github.readability.samples.R
 import com.github.readability.samples.SampleURLs
 import com.github.readability.samples.StyleSheet
 import com.github.readability.webview.ReaderJSInterface
+import com.github.webview.resources.ReaderJS
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class WebViewActivity : AppCompatActivity() {
@@ -119,7 +120,7 @@ class WebViewActivity : AppCompatActivity() {
         webView.webChromeClient = webViewChromeClient
         webView.webViewClient = webViewClient
 
-        webView.addJavascriptInterface(ReaderJSInterface, ReaderJSInterface.Bridge)
+        webView.addJavascriptInterface(ReaderJSInterface, ReaderJS.Bridge)
 
         ReaderJSInterface.renderReadabilityPage(
             webView,

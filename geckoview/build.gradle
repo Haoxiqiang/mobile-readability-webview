@@ -42,7 +42,8 @@ android {
 dependencies {
     api project(path: ':resources')
     testImplementation 'junit:junit:4.13.2'
-    api "org.mozilla.geckoview:geckoview-omni-arm64-v8a:98.0.20220228162945"
+    api "org.mozilla.geckoview:geckoview:96.0.20220126154723"
+    //api "org.mozilla.geckoview:geckoview-omni-arm64-v8a:98.0.20220228162945"
 
 //    api "org.mozilla.geckoview:geckoview-omni-arm64-v8a:98.0.20220228162945"
 //    api "org.mozilla.geckoview:geckoview-arm64-v8a:98.0.20220228162945"
@@ -55,8 +56,6 @@ dependencies {
 //    api "org.mozilla.components:support-utils:98.0.9"
 //    api "org.mozilla.components:feature-webcompat:98.0.9"
 //    api "org.mozilla.components:feature-webcompat-reporter:98.0.9"
-
-//    api "org.mozilla.geckoview:geckoview:98.0.20220228162945"
 }
 
 tasks.register("updateBuiltInExtensionVersion", Copy) { task ->
