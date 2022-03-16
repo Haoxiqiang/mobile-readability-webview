@@ -165,6 +165,11 @@ class ReaderView {
 
     this.colorScheme = colorScheme;
     bodyClasses.add(this.colorScheme);
+
+    if(colorScheme == "heti"){
+      const heti = new Heti('.heti');
+      heti.autoSpacing();
+    }
   }
 
   getColorScheme() {
