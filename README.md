@@ -5,18 +5,20 @@ It's a project provides a function which likes some browser readability page.
 ## API
 
 * open reader view
-ReaderJSInterface.renderReadabilityPage(webView, url)
+`ReaderJSInterface.renderReadabilityPage(webView, url)`
   
 * custom style
 You can custom your style without any JS inject.
-ReaderJSInterface.exeJavaScript(webView, json)
-    -  custom style {"action":"setColorScheme","colorScheme":"light|dark|sepia|heti"}
-    -  custom font size {"action":"changeFontSize","fontSize":1 | -1}  1:increase -1:decrease
-    -  custom font type {"action":"setFontType","fontType":"sans-serif|serif"}
+`ReaderJSInterface.exeJavaScript(webView, json)`
+    -  custom style `{"action":"setColorScheme","colorScheme":"light|dark|sepia|heti"}`
+    -  custom font size `{"action":"changeFontSize","fontSize":1 | -1}  1:increase -1:decrease`
+    -  custom font type `{"action":"setFontType","fontType":"sans-serif|serif"}`
 
 ## Roadmap
 
 - [ ] support GeckoView, I have to write a WebExtension to avoid the CORS problem.
+
+=====================================
 
 ## License
                                  Apache License
