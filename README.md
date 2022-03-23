@@ -18,7 +18,6 @@ You can custom your style without any JS inject.
 
 - [ ] support GeckoView, I have to write a WebExtension to avoid the CORS problem.
 
-=====================================
 
 ## License
                                  Apache License
