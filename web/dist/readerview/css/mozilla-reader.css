@@ -5,15 +5,14 @@ html, body, img {
 }
 
 .mozilla-body {
-  padding: 20px;
-  padding-top: 0px;
+  padding: 0 20px 20px;
   margin-left: auto;
   margin-right: auto;
   transition-property: background-color, color;
   transition-duration: 0.4s;
 }
 .mozilla-body > .container > hr {
-  margin: 0px;
+  margin: 0;
 }
 .mozilla-body > .container > .header {
   text-align: start;
@@ -23,15 +22,13 @@ html, body, img {
   font-weight: 700;
   line-height: 1.1em;
   width: 100%;
-  margin: 0px;
-  margin-top: 32px;
-  margin-bottom: 16px;
-  padding: 0px;
+  margin: 32px 0 16px;
+  padding: 0;
 }
 .mozilla-body > .container > .header > .credits {
   font-size: 0.9em;
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 }
 .mozilla-body > .container > .header > .domain {
   text-decoration: none;
@@ -47,8 +44,8 @@ html, body, img {
 }
 .mozilla-body > .container > .content {
   padding-top: 10px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 0;
+  padding-right: 0;
 }
 .mozilla-body > .mozilla-content {
   font-size: 1em;
@@ -82,7 +79,7 @@ html, body, img {
 .mozilla-body > .mozilla-content p {
   font-size: 1em !important;
   line-height: 1.4em !important;
-  margin: 0px !important;
+  margin: 0 !important;
   margin-bottom: 20px !important;
 }
 .mozilla-body > .mozilla-content p img:only-child, .mozilla-body > .mozilla-content p a:only-child > img:only-child {
@@ -95,17 +92,17 @@ html, body, img {
   margin-bottom: 20px !important;
 }
 .mozilla-body > .mozilla-content blockquote {
-  margin: 0px !important;
+  margin: 0 !important;
   margin-bottom: 20px !important;
-  padding: 0px !important;
+  padding: 0 !important;
   padding-inline-start: 16px !important;
-  border: 0px !important;
+  border: 0 !important;
   border-left: 2px solid !important;
 }
 .mozilla-body > .mozilla-content figure, .mozilla-body > .mozilla-content .wp-caption {
   display: block !important;
   width: 100% !important;
-  margin: 0px !important;
+  margin: 0 !important;
   margin-bottom: 32px !important;
 }
 .mozilla-body > .mozilla-content figure img, .mozilla-body > .mozilla-content .wp-caption img {
@@ -114,9 +111,9 @@ html, body, img {
   margin-right: auto;
 }
 .mozilla-body > .mozilla-content ul, .mozilla-body > .mozilla-content ol {
-  margin: 0px !important;
+  margin: 0 !important;
   margin-bottom: 20px !important;
-  padding: 0px !important;
+  padding: 0 !important;
   line-height: 1.5em;
 }
 .mozilla-body > .mozilla-content ul {

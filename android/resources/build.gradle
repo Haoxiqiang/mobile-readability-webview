@@ -35,7 +35,7 @@ android {
 
     sourceSets {
         main {
-            assets.srcDirs = [rootProject.file("web/dist/")]
+            assets.srcDirs = [rootProject.file("../web/dist/")]
         }
     }
 }

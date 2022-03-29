@@ -8,6 +8,8 @@ sass mozilla-reader-light.sass $dist/css/mozilla-reader-light.css --no-source-ma
 sass mozilla-reader-sepia.sass $dist/css/mozilla-reader-sepia.css --no-source-map
 
 # build high-light
+echo `pwd`
+cd highlight.js/ && yarn install && yarn build-cdn && cd ..
 cp highlight.js/build/es/highlight.js $dist/js/highlight.js
 echo 'window.hljs = highlight;' >> $dist/js/highlight.js
 cp highlight.js/build/styles/default.min.css $dist/css/highlight.min.css
