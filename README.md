@@ -14,12 +14,17 @@ You can custom your style without any JS inject.
     -  custom font size `{"action":"changeFontSize","fontSize":1 | -1}  1:increase -1:decrease`
     -  custom font type `{"action":"setFontType","fontType":"sans-serif|serif"}`
 
+* samples
+
+https://user-images.githubusercontent.com/3881604/179922522-98c8dec8-3241-4b9f-a54c-8640f6451237.mp4
+
 ## Roadmap
 
 - [ ] support GeckoView, I have to write a WebExtension to avoid the CORS problem.
 - [ ] support iOS WKWebView.
 
 ## License
+
 ```
                                  Apache License
                            Version 2.0, January 2004
