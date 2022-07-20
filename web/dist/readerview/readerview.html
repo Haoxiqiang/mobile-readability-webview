@@ -36,7 +36,7 @@
 
     document.addEventListener('readystatechange', event => {
       if (event.target.readyState === "complete") {
-        showReadability(getParam("ref"));
+        showReadability("https://mirror.xyz/a10.eth/MMkoFwwOAktF-OqPdeUt0m9jp6S0e6zI5cmcyMB-Cro");
       }
     });
 
@@ -69,7 +69,7 @@
           }
           window.applyCompat();
         } catch (e) {
-          console.log(e);
+          console.error(e);
           window.location.href = articleUrl;
         }
       }
@@ -110,15 +110,10 @@
         default:
           console.log(`Sorry, we are out of ${JSON.stringify(json)}.`);
       }
-      window.readability.update();
+      if(window.readability){
+        window.readability.update();
+      }
     }
-
-    // const heti = new Heti('.heti');
-    // heti.autoSpacing();
-
-
-
-
     </script>
 </head>
 
