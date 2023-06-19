@@ -124,7 +124,7 @@ class WebViewActivity : AppCompatActivity() {
 
         ReaderJSInterface.renderReadabilityPage(
             webView,
-            "https://www.zhihu.com/question/47819047/answer/108130984"
+            "https://m.sanyewu.net/94307_94307596/232784104.html"
         )
     }
 

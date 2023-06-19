@@ -36,7 +36,7 @@
 
     document.addEventListener('readystatechange', event => {
       if (event.target.readyState === "complete") {
-        showReadability("https://mirror.xyz/a10.eth/MMkoFwwOAktF-OqPdeUt0m9jp6S0e6zI5cmcyMB-Cro");
+        showReadability(getParam("ref"));
       }
     });
 

@@ -12,6 +12,7 @@ object SampleURLs {
         "https://www.bilibili.com/video/BV1NL411N7KW",
         "https://blog.csdn.net/10km/article/details/80089142",
         "https://www.xbiquge.la/7/7877/3595785.html",
+        "https://m.sanyewu.net/94307_94307596/232784104.html",
     )
 
     fun show(activity: Activity, urlPicker: (String) -> Unit, dismiss: () -> Unit) {
