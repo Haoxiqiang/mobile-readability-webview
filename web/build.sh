@@ -1,5 +1,25 @@
 #!/usr/bin/env sh
 
+# check node installed
+if ! command -v node &> /dev/null
+then
+    echo "node could not be found"
+    exit
+fi
+# check pnpm installed
+if ! command -v pnpm &> /dev/null
+then
+    echo "pnpm could not be found"
+    exit
+fi
+
+# check sass installed
+if ! command -v sass &> /dev/null
+then
+    echo "sass could not be found"
+    exit
+fi
+
 # build styles
 dist=dist/readerview
 sass mozilla-reader.sass $dist/css/mozilla-reader.css --no-source-map
@@ -9,7 +29,7 @@ sass mozilla-reader-sepia.sass $dist/css/mozilla-reader-sepia.css --no-source-ma
 
 # build high-light
 echo `pwd`
-cd highlight.js/ && yarn install && yarn build-cdn && cd ..
+cd highlight.js/ && pnpm install && pnpm build-cdn && cd ..
 cp highlight.js/build/es/highlight.js $dist/js/highlight.js
 echo 'window.hljs = highlight;' >> $dist/js/highlight.js
 cp highlight.js/build/styles/default.min.css $dist/css/highlight.min.css

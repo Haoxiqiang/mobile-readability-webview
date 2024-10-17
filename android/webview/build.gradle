@@ -4,13 +4,10 @@ plugins {
 }
 
 android {
-    compileSdk 31
-
     defaultConfig {
         minSdk 21
-        targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        compileSdk 35
+        targetSdk 35
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -30,8 +27,9 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-        freeCompilerArgs += '-Xjvm-default=compatibility'
     }
+
+    namespace = "com.github.readability.webview"
 }
 
 dependencies {

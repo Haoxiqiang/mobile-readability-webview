@@ -18,6 +18,23 @@ You can custom your style without any JS inject.
 
 https://user-images.githubusercontent.com/3881604/179922522-98c8dec8-3241-4b9f-a54c-8640f6451237.mp4
 
+## Build & Develop
+
+### Android
+
+open android dir with Android Studio
+
+### Web
+
+* first init submodule
+```shell
+git submodule update --init --force
+```
+* web dir is reader page source code, you can use custom reader style in it.
+- cd web
+- sh pre-build.sh
+- sh build.sh
+
 ## Roadmap
 
 - [ ] support GeckoView, I have to write a WebExtension to avoid the CORS problem.
