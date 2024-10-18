@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
-import com.github.webview.resources.ReaderJS
+import com.github.readability.webview.ReaderJS
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.json.JSONObject
 

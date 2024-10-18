@@ -3,7 +3,6 @@ package com.github.readability.webview
 import android.util.Log
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
-import com.github.webview.resources.ReaderJS
 import org.json.JSONObject
 import java.net.URLEncoder
 

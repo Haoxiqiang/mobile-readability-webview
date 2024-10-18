@@ -14,11 +14,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.webkit.WebSettingsCompat
+import androidx.webkit.WebViewFeature
 import com.github.readability.samples.R
 import com.github.readability.samples.SampleURLs
 import com.github.readability.samples.StyleSheet
+import com.github.readability.webview.ReaderJS
 import com.github.readability.webview.ReaderJSInterface
-import com.github.webview.resources.ReaderJS
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class WebViewActivity : AppCompatActivity() {
@@ -43,7 +44,7 @@ class WebViewActivity : AppCompatActivity() {
             if (processUrl(url)) {
                 return true
             }
-            return super.shouldOverrideUrlLoading(view, url)
+            return super.shouldOverrideUrlLoading(/* view = */ view, /* url = */ url)
         }
 
         fun processUrl(url: String): Boolean {
@@ -68,6 +69,14 @@ class WebViewActivity : AppCompatActivity() {
         }
     }
 
+    private fun isWebViewInForceDarkMode(): Boolean {
+        return if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+            WebSettingsCompat.getForceDark(webView.settings) == WebSettingsCompat.FORCE_DARK_ON
+        } else {
+            false
+        }
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,15 +96,16 @@ class WebViewActivity : AppCompatActivity() {
             StyleSheet()
                 .apply {
                     styleTheme = { st ->
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && webView.settings.forceDark == WebSettingsCompat.FORCE_DARK_ON) {
+                        // if WebView in force dark mode, theme won't works.
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && isWebViewInForceDarkMode()) {
                             Toast.makeText(
                                 applicationContext,
                                 "webView.settings.forceDark, theme won't works.",
                                 Toast.LENGTH_SHORT
                             ).show()
-                        } else {
-                            ReaderJSInterface.exeJavaScript(webView, st)
                         }
+
+                        ReaderJSInterface.exeJavaScript(webView, st)
                     }
                     styleFontSize = { sf ->
                         ReaderJSInterface.exeJavaScript(webView, sf)
@@ -138,6 +148,7 @@ class WebViewActivity : AppCompatActivity() {
         webView.pauseTimers()
     }
 
+    @Suppress("OVERRIDE_DEPRECATION", "DEPRECATION")
     override fun onBackPressed() {
         if (webView.canGoBack()) {
             webView.goBack()

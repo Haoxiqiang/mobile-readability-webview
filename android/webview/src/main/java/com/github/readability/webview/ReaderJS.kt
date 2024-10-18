@@ -1,4 +1,4 @@
-package com.github.webview.resources
+package com.github.readability.webview
 
 import org.json.JSONObject
 
